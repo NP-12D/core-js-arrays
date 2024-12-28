@@ -516,14 +516,14 @@ function findCommonElements(arr1, arr2) {
  */
 function findLongestIncreasingSubsequence(nums) {
   if (nums.length === 0) return 0;
-  const dp = nums.map(() => 1);
-  nums.reduce((_, num, i) => {
-    nums.slice(0, i).reduce((__, prevNum, j) => {
+  const dp = Array(nums.length).fill(1);
+  nums.forEach((num, i) => {
+    nums.slice(0, i).forEach((prevNum, j) => {
       if (num > prevNum) {
         dp[i] = Math.max(dp[i], dp[j] + 1);
       }
-    }, 0);
-  }, 0);
+    });
+  });
   return Math.max(...dp);
 }
 
